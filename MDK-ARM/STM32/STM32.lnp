@@ -23,7 +23,6 @@
 "stm32\stm32f1xx_hal_exti.o"
 "stm32\stm32f1xx_hal_tim.o"
 "stm32\stm32f1xx_hal_tim_ex.o"
-"stm32\stm32f1xx_hal_uart.o"
 "stm32\system_stm32f1xx.o"
 "stm32\usbd_core.o"
 "stm32\usbd_ctlreq.o"
