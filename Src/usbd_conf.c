@@ -271,7 +271,6 @@ void HAL_PCD_ConnectCallback(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
   USBD_LL_DevConnected((USBD_HandleTypeDef*)hpcd->pData);
-	HAL_GPIO_WritePin(GPIOC, LED_PIN_Pin, GPIO_PIN_SET);
 }
 
 /**

@@ -68,8 +68,10 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN 0 */
 void Soft_Start()
 {
-	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+	SET_BIT(TIM2->CCER, TIM_CCER_CC1E);
+	SET_BIT(TIM2->CR1, TIM_CR1_CEN);
 	TIM2->CCR1=Duty_Current;
+	//SET_BIT(TIM2->BDTR, TIM_BDTR_MOE);
 	for(int i = 0; i<=49; i++)
 		{
 			Duty_Current = Duty_Current + DUTY_DELTA;
@@ -123,13 +125,13 @@ int main(void)
     /* USER CODE BEGIN 3 */
 		//Soft_Start();
 		if((hUsbDeviceFS.dev_state == 0x03) && (hUsbDeviceFS.ep0_state == 0x00000004) && (hUsbDeviceFS.ep0_data_len) == 0x00000000)
-		{
-			HAL_GPIO_WritePin(GPIOC, LED_PIN_Pin, GPIO_PIN_SET);
+    {
+			SET_BIT(GPIOB->ODR, GPIO_ODR_ODR3);
 		}
 
-		else
-		{
-			HAL_GPIO_WritePin(GPIOC, LED_PIN_Pin, GPIO_PIN_RESET);
+		if(hUsbDeviceFS.dev_state == 0x04)
+    {
+			CLEAR_BIT(GPIOB->ODR, GPIO_ODR_ODR3);
 		}
 		temp = atoi(UserRxBufferFS);
 		TIM2->CCR1 = Duty_Current;
@@ -263,7 +265,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL4;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -348,9 +350,9 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED_PIN_GPIO_Port, LED_PIN_Pin, GPIO_PIN_RESET);
