@@ -356,18 +356,11 @@ Wire Wire Line
 Wire Wire Line
 	5850 5150 6100 5150
 Wire Wire Line
-	6000 5250 6000 5800
-Wire Wire Line
 	5850 5250 6000 5250
-Wire Wire Line
-	6000 5800 6450 5800
 Wire Wire Line
 	2550 2950 2550 3100
 Wire Wire Line
-	6450 5900 6450 6150
-Wire Wire Line
 	2550 6150 5350 6150
-Connection ~ 6450 6150
 Wire Wire Line
 	4200 2650 4200 2750
 Wire Wire Line
@@ -387,8 +380,6 @@ Connection ~ 4500 2100
 Wire Wire Line
 	4900 1650 4900 1550
 Connection ~ 4900 1550
-Wire Wire Line
-	4900 1550 5050 1550
 $Comp
 L Device:C_Small C3
 U 1 1 5E6EED31
@@ -426,10 +417,6 @@ Wire Wire Line
 Connection ~ 2550 2750
 Wire Wire Line
 	2550 2750 2550 2950
-Text Label 6150 5600 0    50   ~ 0
-DIO
-Text Label 6150 5800 0    50   ~ 0
-CLK
 Wire Wire Line
 	6450 5050 5850 5050
 Wire Wire Line
@@ -456,20 +443,6 @@ F 3 "~" H 6400 4450 50  0001 C CNN
 	1    6400 4450
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5850 4850 6200 4850
-Wire Wire Line
-	6200 4850 6200 4550
-Wire Wire Line
-	5850 4750 6100 4750
-Wire Wire Line
-	6100 4750 6100 4450
-Wire Wire Line
-	6100 4450 6200 4450
-Text Label 5900 4750 0    50   ~ 0
-TX
-Text Label 5900 4850 0    50   ~ 0
-RX
 Text Label 5950 3850 0    50   ~ 0
 PWM_OUT
 Text Label 6800 3850 0    50   ~ 0
@@ -487,8 +460,6 @@ Connection ~ 7600 6150
 Wire Wire Line
 	7600 6150 9000 6150
 Wire Wire Line
-	6450 6150 7600 6150
-Wire Wire Line
 	6850 5050 7300 5050
 Wire Wire Line
 	6950 5150 7300 5150
@@ -500,8 +471,6 @@ Wire Wire Line
 	5350 5700 5350 6150
 Connection ~ 5350 5700
 Connection ~ 5350 6150
-Wire Wire Line
-	5350 6150 6450 6150
 $Comp
 L Device:Crystal Y1
 U 1 1 5E781FBF
@@ -695,12 +664,12 @@ F 3 "~" V 3600 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Diode:BZM55Bxx D4
+L Diode:BZM55Bxx ZD4
 U 1 1 5E73C2E1
 P 8400 4050
-F 0 "D4" V 8400 3900 50  0000 L CNN
+F 0 "ZD4" V 8400 3850 50  0000 L CNN
 F 1 "ZM4740A_10V" V 8550 3650 39  0000 L CNN
-F 2 "Diode_SMD:D_MicroMELF" H 8400 3875 50  0001 C CNN
+F 2 "Diode_SMD:D_MELF" H 8400 3875 50  0001 C CNN
 F 3 "http://www.vishay.com/docs/85597/bzm55.pdf" H 8400 4050 50  0001 C CNN
 	1    8400 4050
 	0    1    1    0   
@@ -742,10 +711,6 @@ $EndComp
 Wire Wire Line
 	2550 3400 2550 3850
 Wire Wire Line
-	4550 3550 4250 3550
-Wire Wire Line
-	4250 3550 4250 3850
-Wire Wire Line
 	4250 3850 4150 3850
 Wire Wire Line
 	3500 3850 2550 3850
@@ -753,11 +718,64 @@ Connection ~ 2550 3850
 Wire Wire Line
 	2550 3850 2550 6150
 Wire Wire Line
+	5850 4050 6100 4050
+Wire Wire Line
+	6100 4050 6100 4450
+Wire Wire Line
+	6100 4450 6200 4450
+Wire Wire Line
+	5850 4150 6000 4150
+Wire Wire Line
+	6000 4150 6000 4550
+Wire Wire Line
+	6000 4550 6200 4550
+Text Label 5900 4150 0    50   ~ 0
+RX
+Text Label 5900 4050 0    50   ~ 0
+TX
+$Comp
+L Connector:Conn_01x01_Male J6
+U 1 1 5E850E41
+P 5500 1550
+F 0 "J6" H 5608 1731 50  0000 C CNN
+F 1 "Conn_01x01_Male" H 5608 1640 50  0000 C CNN
+F 2 "TestPoint:TestPoint_Pad_D2.0mm" H 5500 1550 50  0001 C CNN
+F 3 "~" H 5500 1550 50  0001 C CNN
+	1    5500 1550
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4900 1550 5050 1550
+Connection ~ 5050 1550
+Wire Wire Line
+	5050 1550 5300 1550
+Text Label 6150 5600 0    50   ~ 0
+DIO
+Wire Wire Line
 	6100 5150 6100 5600
 Wire Wire Line
 	6100 5600 6450 5600
 Wire Wire Line
-	6400 5500 6400 5700
+	6000 5900 6450 5900
 Wire Wire Line
-	6400 5700 6450 5700
+	6000 5250 6000 5900
+Text Label 6150 5900 0    50   ~ 0
+CLK
+Wire Wire Line
+	5350 6150 6300 6150
+Wire Wire Line
+	6300 5700 6300 6150
+Wire Wire Line
+	6300 5700 6450 5700
+Connection ~ 6300 6150
+Wire Wire Line
+	6300 6150 7600 6150
+Wire Wire Line
+	6400 5500 6400 5800
+Wire Wire Line
+	6400 5800 6450 5800
+Wire Wire Line
+	4250 3850 4250 4150
+Wire Wire Line
+	4250 4150 4550 4150
 $EndSCHEMATC
